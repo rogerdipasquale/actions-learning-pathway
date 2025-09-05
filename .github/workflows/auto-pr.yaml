@@ -22,7 +22,7 @@ jobs:
         run: |
           gh pr create \
             --base develop \ 
-            --head  ${{ env.BRANCH_NAME }} \
+            --head ${{ env.BRANCH_NAME }} \
             --title "Automated PR from your-feature-branch ${{ env.CURRENT_DATE }}" \
             --body "This pull request was automatically created by a GitHub Action."
         env:
