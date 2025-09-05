@@ -10,7 +10,7 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v4
       - name: Get Current Date
-        run: echo "CURRENT_DATE=$(date +'%YY-%m-%d')" >> $GITHUB_ENV
+        run: echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
       - name: Get Current Branch
         run: |
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
@@ -20,10 +20,10 @@ jobs:
           fi
       - name: Create Pull Request
         run: |
-          gh pr create \
-            --base develop \ 
-            --head ${{ env.BRANCH_NAME }} \
-            --title "Automated PR from your-feature-branch ${{ env.CURRENT_DATE }}" \
+          gh pr create\
+            --base "develop"\ 
+            --head "${{ env.BRANCH_NAME }}"\
+            --title "Automated PR from your-feature-branch ${{ env.CURRENT_DATE }}\
             --body "This pull request was automatically created by a GitHub Action."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
