@@ -12,13 +12,11 @@ jobs:
       - name: Get Current Date
         run: echo "CURRENT_DATE=$(date +'%YYYY-%mm-%dd')" >> $GITHUB_ENV
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Image Update Automation"
-          title: "Request to Deploy ${{ env.CURRENT_DATE }}"
-          body: "This PR was automatically created by FluxCD as a request to deploy ."
-          base: develop # Source branch for the pull request
-          labels: |
-            flux-automation
-            image-update
+        run: |
+          gh pr create \
+            --base develop \ 
+            --head ${GITHUB_REF#refs/heads/}
+            --title "Automated PR from your-feature-branch" \
+            --body "This pull request was automatically created by a GitHub Action."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
