@@ -15,7 +15,7 @@ jobs:
         run: |
           gh pr create \
             --base develop \ 
-            --head ${GITHUB_REF#refs/heads/}
+            --head ${GITHUB_REF#refs/heads/} \
             --title "Automated PR from your-feature-branch" \
             --body "This pull request was automatically created by a GitHub Action."
         env:
