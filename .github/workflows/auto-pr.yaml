@@ -3,6 +3,7 @@ on:
   push:
     branches:
      - flux/*
+     
 jobs:
   create-pr:
     runs-on: ubuntu-latest
