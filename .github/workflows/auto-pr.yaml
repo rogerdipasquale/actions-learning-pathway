@@ -1,0 +1,24 @@
+name: Create Pull Request for Flux Updates
+on:
+  push:
+    branches:
+     - flux*
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+      - name: Get Current Date
+        run: echo "CURRENT_DATE=$(date +'%YYYY-%mm-%dd')" >> $GITHUB_ENV
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Image Update Automation"
+          title: "Request to Deploy ${{ env.CURRENT_DATE }}"
+          body: "This PR was automatically created by FluxCD as a request to deploy ."
+          base: develop # Source branch for the pull request
+          labels: |
+            flux-automation
+            image-update
