@@ -11,11 +11,13 @@ jobs:
         uses: actions/checkout@v4
       - name: Get Current Date
         run: echo "CURRENT_DATE=$(date +'%YYYY-%mm-%dd')" >> $GITHUB_ENV
+      - name: Get Current Branch
+        run: echo "BRANCH_NAME=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
       - name: Create Pull Request
         run: |
           gh pr create \
             --base develop \ 
-            --head ${GITHUB_REF#refs/heads/} \
+            --head  ${{ env.BRANCH_NAME }} \
             --title "Automated PR from your-feature-branch" \
             --body "This pull request was automatically created by a GitHub Action."
         env:
