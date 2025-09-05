@@ -26,8 +26,10 @@ jobs:
           --base "develop" \
           --head "${{ env.BRANCH_NAME }}" \
           --title "Deployment request for APP changed -  ${{ env.CURRENT_DATE }}" \
-          --body "PR wants to deploy\ 
-          \n\nThis pull request was automatically created by a GitHub Action.
-          \n\nMore information"
+          --body "PR wants to deploy
+          This pull request was automatically created by a GitHub Action.
+
+          `quotes for code`
+          More information"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
