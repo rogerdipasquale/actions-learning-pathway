@@ -2,7 +2,7 @@ name: Create Pull Request for Flux Updates
 on:
   push:
     branches:
-     - flux/*
+     - fluxo/*
 permissions:
   pull-requests: write
 jobs:
