@@ -22,7 +22,8 @@ jobs:
           fi
       - name: Create Pull Request
         run: |
-          gh pr create --base "develop" --head "${{ env.BRANCH_NAME }}" --title "Deployment request for APP -  ${{ env.CURRENT_DATE }}" --body "PR wants to deploy\ 
+          gh pr create --base "develop" --head "${{ env.BRANCH_NAME }}" \
+          --title "Deployment request for APP -  ${{ env.CURRENT_DATE }}" --body "PR wants to deploy\ 
           \n\nThis pull request was automatically created by a GitHub Action.
           \n\nMore information"
         env:
